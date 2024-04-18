@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card-box mb-30">
+    <div class="pd-20">
+        {{form}}
+    </div>
+</div>
+
+<!-- Export Datatable start -->
+<div class="card-box mb-30">
+    <div class="pd-20">
+        <h4 class="text-blue h4">Item List</h4>
+    </div>
+    <div class="pb-20">
+        <table
+                class="table hover data-table nowrap"
+        >
+            <thead>
+            <tr class="">
+                <th>Item Name</th>
+                <th>Price</th>
+                <th>Kitchen</th>
+                <th>Out of Order</th>
+                <th>status</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for p in items %}
+            <tr class="">
+                <td>{{p.item_name}}</td>
+                <td><a href="#"><strong>{{p.sale_price}}</strong></a></td>
+                <td>{{p.kitchen}}</td>
+                <td>
+                    -
+                </td>
+                <td>
+                    {% if p.out_of_order == True %}
+                    <a href="#" class="text-danger h3"><i class="icon-copy bi bi-bell-slash-fill"></i></a>
+
+                    {% else %}
+                    <a href="#" class="text-success h3"><i class="icon-copy dw dw-cocktail"></i></a>
+                    {% endif %}
+
+                    {% if p.active_status == True %}
+                    <a href="#" class="text-success h3 pl-2"><i class="icon-copy bi bi-check-circle-fill"></i></a>
+                    <a href="#" class="text-primary h3 pl-2"><i class="icon-copy dw dw-pencil"></i></a>
+                    <a href="#" class="text-danger h3 pl-2"><i class="icon-copy dw dw-delete-3"></i></a>
+                    {% else %}
+                    <a href="#" class="text-danger h3 pl-2"><i class="icon-copy dw dw-tick"></i></a>
+                    <a href="#" class="text-primary h3 pl-2"><i class="icon-copy dw dw-pencil"></i></a>
+                    <a href="#" class="text-danger h3 pl-2"><i class="icon-copy dw dw-delete-3"></i></a>
+                    {% endif %}
+
+                </td>
+
+
+
+
+            </tr>
+            {% endfor %}
+
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                                <td><strong></strong></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<!-- Export Datatable End -->
+
+
+
+
+{% endblock content %}
