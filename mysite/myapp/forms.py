@@ -9,14 +9,18 @@ class ULoginForm(forms.Form):
 class tablenameform(forms.ModelForm):
     class Meta:
         model = tablename
-        fields = ['table_name','occupy']
+        fields = ['table_name']
         widgets = {
             'table_name': forms.TextInput(attrs={'class': 'form-control col-md-6'}),
-            'occupy': forms.TextInput(attrs={'class': 'form-control col-md-6'}),
+            
 
         }
 
 class itemcreateform(forms.ModelForm):
     class Meta:
         model = item
-        fields = '__all__'
+        fields = ['item_name','sale_price','kitchen']
+        widgets = {
+            'item_name' : forms.TextInput(attrs={'class': 'form-control'}),
+            'sale_price' : forms.NumberInput(attrs={'class': 'form-control'}),
+        }

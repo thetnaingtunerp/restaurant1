@@ -18,11 +18,26 @@ from .forms import *
 from .models import *
 # Create your views here.
 def test(request):
-    return render(request, 'item_list.html')
+    return render(request, 'index.html')
 
 class itemlist(View):
     def get(self, request):
         items = item.objects.all()
         form = itemcreateform()
         context = {'items':items, 'form':form}
-        return render(request, 'item_list.html', context)
+        return render(request, 'itemlist.html', context)
+
+    def post(self, request):
+        form = itemcreateform(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('myapp:itemlist')
+        else:
+            return redirect('myapp:itemlist')
+
+class tablelist(View):
+    def get(self, request):
+        tbl = tablename.objects.all()
+        form = tablenameform()
+        context = {'tbl':tbl, 'form':form}
+        return render(request, 'tablelist.html', context)
